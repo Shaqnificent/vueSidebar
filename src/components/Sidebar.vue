@@ -43,10 +43,11 @@
 <script setup>
 import { ref } from 'vue'
 
-const is_expanded = ref(false)
+const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
 const ToggleMenu = () => {
     is_expanded.value = !is_expanded.value
+    localStorage.setItem("is_expanded", is_expanded.value)
 }
 </script>
 <style lang="scss" scoped>
@@ -102,9 +103,9 @@ aside {
             }
         }
     }
-    h3, .button, .text {
+    h3, .button .text {
         opacity: 0;
-        transition: 0.3s ease-out;
+        transition: opacity 0.3s ease-out;
     }
     h3 {
         color: gray;
